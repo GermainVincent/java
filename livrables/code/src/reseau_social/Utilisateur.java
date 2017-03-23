@@ -1,43 +1,100 @@
 package reseau_social;
 
+import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Utilisateur {
-    private String nom;
-    private String prenom;
-    private Integer anneeNaissance;
-    ArrayList messages;
-    ArrayList amis; 
+/** Création de la classe "Utilisateur" héritant de la classe "Personne" et de l'interface "Relation" */
+    public class Utilisateur extends Personne implements Relation {
+    protected String pseudo;
+    protected HashMap<Integer, String> messages = new HashMap<>();
+    protected ArrayList<Utilisateur> usersList = new ArrayList<>();
+    protected ArrayList amis;
+    private String message;
+    String ouiOuNon;
+    int suppr;
+    int index = 0;
+    int i = 0;
+    Utilisateur u;
 
-    public String getNom() {
-        return nom;
+    
+    /** Création du scanner permettant de récupérer les saisies clavier */
+    Scanner monScanner = new Scanner(System.in);
+        
+    public void creerUtilisateur() {
+        
+        System.out.println("Nom: ");
+        nom = monScanner.nextLine();
+                
+        System.out.println("Prénom: ");
+        prenom = monScanner.nextLine();
+        
+        System.out.println("Année de naissance: ");
+        anneeNaissance = monScanner.nextInt(); monScanner.nextLine();
+                    
+        System.out.println("Pseudo: ");
+        pseudo = monScanner.nextLine();
+    }
+        
+    public HashMap afficherMessages() {
+        System.out.println(messages);
+    return messages;    
+    }
+        
+    public String ecrireMessage() {
+        System.out.println("Veuillez rédiger votre message: ");
+        message = monScanner.nextLine();
+        index ++;
+        messages.put(index, message);
+    return message;
+    }
+  
+    public void supprimerMessage() {
+      System.out.println("Souhaitez-vous afficher la liste de vos messages afin d'obtenir leurs index? o/n");
+        String ouiOuNon = monScanner.nextLine();
+        char choice = ouiOuNon.charAt(0);
+            if (choice == 'o' || choice == 'O') {
+                afficherMessages();
+            } else {
+                System.out.println("Veuillez indiquer le numéro du message que vous souhaitez supprimer");  
+                suppr = monScanner.nextInt(); monScanner.nextLine();
+                messages.remove(suppr);
+            }            
+    }
+                     
+    public void afficherUtilisateur() {
+        for (i = 0; i <= usersList.size(); i++) {
+        System.out.println(usersList);
+        System.out.println("Prénom: " + usersList.get(i).getPrenom());
+        System.out.println("Nom: " + usersList.get(i).getNom());
+        System.out.println("Année de naissance: " + usersList.get(i).getAnneeNaissance());
+        System.out.println("Pseudo: " + usersList.get(i).getPseudo());
+        }
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    /**
+     *
+     */
+    @Override
+    public void ajouterPersonne() {
+
+    }
+      
+    /** Getter et setter
+     * @return  */
+    protected String getPseudo() {
+        return pseudo;
+    }
+    
+    protected void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public Integer getAnneeNaissance() {
-        return anneeNaissance;
-    }
-
-    public void setAnneeNaissance(Integer anneeNaissance) {
-        this.anneeNaissance = anneeNaissance;
-    }
-
-    public ArrayList getMessages() {
+    public HashMap getMessages() {
         return messages;
     }
 
-    public void setMessages(ArrayList messages) {
+    public void setMessages(HashMap messages) {
         this.messages = messages;
     }
 
@@ -48,5 +105,22 @@ public class Utilisateur {
     public void setAmis(ArrayList amis) {
         this.amis = amis;
     }
+
+    public ArrayList<Utilisateur> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(ArrayList<Utilisateur> usersList) {
+        this.usersList = usersList;
+    }    
+    /** Fin getter et setter */
     
-}
+    public void seConnecter()
+    {
+        System.out.print("connexion");
+    }
+    public void seDeconnecter()
+    {
+        System.out.print("connexion");
+    }
+    }
