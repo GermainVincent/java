@@ -3,14 +3,21 @@
       
 package reseau_social;
 
+import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /** Déclaration de la classe principale "reseau_social" */
 public class reseau_social {
                
-    /** *  @param args Méthode principale permettant de réaliser des fonctions */
-    public static void main(String[] args) {
+    /** *  @param args Méthode principale permettant de réaliser des fonctions
+     * @throws java.sql.SQLException */
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        
+
+          
+              
+        
+        
         
         /** Déclaration du scanner afin de récupérer des données saisies au clavier" */
         Scanner monScanner = new Scanner(System.in);
@@ -76,9 +83,9 @@ public class reseau_social {
                     if (choice2 == 'o' || choice2 == 'O') {     
                         toto = new Directeur();
                         
-//                        Directeur d = (Directeur)toto;
-//                        d.ajouterPersonne();
-//                        
+                      Directeur d = (Directeur)toto;
+                       d.ajouterPersonne();
+                       
                         ((Directeur)toto).ajouterPersonne();
                     }
                     else
